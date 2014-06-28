@@ -7,18 +7,29 @@ class Commuter
     accumulator = {}
 
     @input.each do |row|
-      accumulator[row[0]] = [
-        {
-          week: row[1],
-          day: row[2],
-          mode: row[3],
-          inbound: row[4],
-          outbound: row[5],
-          distance: row[6]
-        }
-      ]
+      if accumulator.has_key?(row[0])
+        accumulator[row[0]] <<
+          {
+            week: row[1],
+            day: row[2],
+            mode: row[3],
+            inbound: row[4],
+            outbound: row[5],
+            distance: row[6]
+          }
+      else
+        accumulator[row[0]] = [
+          {
+            week: row[1],
+            day: row[2],
+            mode: row[3],
+            inbound: row[4],
+            outbound: row[5],
+            distance: row[6]
+          }
+        ]
+      end
     end
     p accumulator
   end
-
 end
